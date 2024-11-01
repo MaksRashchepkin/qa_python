@@ -2,6 +2,7 @@ from main import BooksCollector
 
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
 # обязательно указывать префикс Test
+
 class TestBooksCollector:
 
     # пример теста:
@@ -28,7 +29,6 @@ from main import BooksCollector
 
 class TestBooksCollector:
 
-
     def test_add_new_book_add_two_books(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
@@ -37,12 +37,16 @@ class TestBooksCollector:
                                                'Что делать, если ваш кот хочет вас убить': ''}
 
 
+class TestBooksCollector:
+
     def test_add_new_book_already_added_book(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение')
         collector.add_new_book('Гордость и предубеждение')
         assert collector.get_books_genre() == {'Гордость и предубеждение': ''}
 
+
+class TestBooksCollector:
 
     @pytest.mark.parametrize('name', ['',
                                       'Удивительное путешествие Нильса Хольгерсс',
@@ -52,6 +56,8 @@ class TestBooksCollector:
         assert len(books_collection.get_books_genre()) == 0
 
 
+class TestBooksCollector:
+
     @pytest.mark.parametrize('name', ['К югу от границы',
                                       'Любовь как роза, красива, но шипы больны',
                                       'Я'])
@@ -60,6 +66,8 @@ class TestBooksCollector:
         assert name in books_collection.get_books_genre()
 
 
+class TestBooksCollector:
+
     def test_set_book_genre_to_existing_book(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение')
@@ -67,11 +75,15 @@ class TestBooksCollector:
         assert collector.get_books_genre() == {'Гордость и предубеждение': 'Фантастика'}
 
 
+class TestBooksCollector:
+
     def test_set_book_genre_to_not_existing_book(self):
         collector = BooksCollector()
         collector.set_book_genre('Гордость и предубеждение', 'Фантастика')
         assert collector.get_books_genre() == {}
 
+
+class TestBooksCollector:
 
     def test_set_book_genre_to_not_existing_genre(self):
         collector = BooksCollector()
@@ -79,6 +91,8 @@ class TestBooksCollector:
         collector.set_book_genre('Гордость и предубеждение', 'Трагикомедии')
         assert collector.get_books_genre() == {'Гордость и предубеждение': ''}
 
+
+class TestBooksCollector:
 
     @pytest.mark.parametrize('name, genre', [('Гордость и предубеждение и зомби', 'Ужасы'),
                                              ('Что делать, если ваш кот хочет вас убить', 'Комедии')])
@@ -89,6 +103,8 @@ class TestBooksCollector:
         assert collector.get_book_genre(name) == genre
 
 
+class TestBooksCollector:
+
     @pytest.mark.parametrize('name, genre', [('Гордость и предубеждение и зомби', 'Ужасы'),
                                              ('Что делать, если ваш кот хочет вас убить', 'Комедии')])
     def test_get_books_with_specific_genre_by_genre(self, name, genre):
@@ -98,18 +114,26 @@ class TestBooksCollector:
         assert collector.get_books_with_specific_genre(genre) == [name]
 
 
+class TestBooksCollector:
+
     def test_get_books_with_specific_genre_by_wrong_genre(self, my_books_collection):
         assert len(my_books_collection.get_books_with_specific_genre('Трагикомедии')) == 0
 
+
+class TestBooksCollector:
 
     def test_get_books_for_children(self, my_books_collection):
         assert len(my_books_collection.get_books_for_children()) == 3 and my_books_collection.get_books_for_children() == ['Дюна', 'Вверх', 'Пятница']
 
 
+class TestBooksCollector:
+
     def test_add_book_in_favorites_not_added_in_favorites_book(self, my_books_collection):
         my_books_collection.add_book_in_favorites('Дюна')
         assert 'Дюна' in my_books_collection.get_list_of_favorites_books() and len(my_books_collection.get_list_of_favorites_books()) == 1
 
+
+class TestBooksCollector:
 
     def test_add_book_in_favorites_added_in_favorites_book(self, my_books_collection):
         my_books_collection.add_book_in_favorites('Дюна')
@@ -117,11 +141,15 @@ class TestBooksCollector:
         assert 'Дюна' in my_books_collection.get_list_of_favorites_books() and len(my_books_collection.get_list_of_favorites_books()) == 1
 
 
+class TestBooksCollector:
+
     def test_add_book_in_favorites_not_added_dict_book(self, my_books_collection):
         book = 'Идиот'
         my_books_collection.add_book_in_favorites(book)
         assert len(my_books_collection.get_list_of_favorites_books()) == 0
 
+
+class TestBooksCollector:
 
     def test_delete_book_from_favorites(self, my_books_collection):
         my_books_collection.add_book_in_favorites('Дюна')
@@ -129,11 +157,15 @@ class TestBooksCollector:
         assert len(my_books_collection.get_list_of_favorites_books()) == 0
 
 
+class TestBooksCollector:
+
     def test_delete_book_from_favorites_deleted_book(self, my_books_collection):
         my_books_collection.add_book_in_favorites('Дюна')
         my_books_collection.delete_book_from_favorites('Вверх')
         assert len(my_books_collection.get_list_of_favorites_books()) == 1 and 'Вверх' not in my_books_collection.get_list_of_favorites_books()
 
+
+class TestBooksCollector:
 
     def test_get_list_of_favorites_books(self, my_books_collection):
         my_books_collection.add_book_in_favorites('Дюна')
