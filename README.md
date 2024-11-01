@@ -1,4 +1,3 @@
-# qa_python
 # Реализованы фикстуры:
 # books_collection: возвращает объект класса BooksCollector
 # my_books_collection: возвращает словарь {книга: жанр}
